@@ -1,21 +1,27 @@
+import React, { useState } from 'react';
 import './App.css';
 import Die from './components/Die';
 
 function App() {
+  const [allNums, setAllNums] = useState(allNewDice())
+
+  function allNewDice() {
+    const numbersArray = [];
+    for (let i = 0; i < 10; i++){
+      numbersArray.push(Math.floor(Math.random() * 6) + 1)
+    }
+    return numbersArray;
+  }
+
+  const DiceElements = allNums.map(num => (
+    <Die value={num}/>
+  ))
+  
   return (
     <div className="App">
       <main>
         <div className='dice-container'>
-          <Die value="1"/>        
-          <Die value="2"/>        
-          <Die value="3"/>        
-          <Die value="4"/>        
-          <Die value="5"/>        
-          <Die value="6"/>        
-          <Die value="7"/>        
-          <Die value="8"/>        
-          <Die value="9"/>        
-          <Die value="10"/>        
+          {DiceElements}  
         </div>
       </main>
     </div>
